@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя первая веб-страница</title>
+    <style>
+        /* Глобальные стили */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f5f5f5;
+            color: #222;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+            line-height: 1.6;
+        }
+
+        /* Шапка */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 25px 30px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        header p {
+            margin: 8px 0 0;
+            opacity: 0.8;
+        }
+
+        /* Навигация */
+        nav {
+            background-color: #ecf0f1;
+            padding: 12px 20px;
+            border-radius: 6px;
+            margin-bottom: 25px;
+        }
+
+        nav a {
+            color: #2c3e50;
+            text-decoration: none;
+            margin-right: 25px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Основной контент */
+        main {
+            background-color: white;
+            padding: 25px 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+
+        main h2 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        main h3 {
+            color: #34495e;
+            margin-top: 20px;
+        }
+
+        /* Список */
+        ul {
+            padding-left: 25px;
+        }
+
+        ul li {
+            margin-bottom: 6px;
+        }
+
+        /* Таблица */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0 10px;
+        }
+
+        table th {
+            background-color: #34495e;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Форма */
+        form {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+
+        form label {
+            display: block;
+            font-weight: bold;
+            margin-top: 12px;
+        }
+
+        form input,
+        form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        form textarea {
+            height: 80px;
+            resize: vertical;
+        }
+
+        form button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        form button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Подвал */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+            border-top: 1px solid #ddd;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ШАПКА САЙТА -->
+    <header>
+        <h1>Мой первый сайт</h1>
+        <p>Учебный проект по дисциплине «Веб-технологии»</p>
+    </header>
+
+    <!-- НАВИГАЦИЯ -->
+    <nav>
+        <a href="#">Главная</a>
+        <a href="#">О нас</a>
+        <a href="#">Услуги</a>
+        <a href="#">Контакты</a>
+    </nav>
+
+    <!-- ОСНОВНОЙ БЛОК -->
+    <main>
+        <h2>Добро пожаловать!</h2>
+        <p>Это пример веб-страницы, созданной в рамках изучения HTML и CSS. Здесь представлены основные элементы, которые используются при разработке сайтов.</p>
+
+        <h3>Основные технологии</h3>
+        <ul>
+            <li><strong>HTML</strong> — язык разметки (структура страницы)</li>
+            <li><strong>CSS</strong> — каскадные таблицы стилей (внешний вид)</li>
+            <li><strong>JavaScript</strong> — программирование поведения (интерактивность)</li>
+        </ul>
+
+        <h3>Пример таблицы</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Технология</th>
+                    <th>Назначение</th>
+                    <th>Уровень</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>HTML5</td>
+                    <td>Структура контента</td>
+                    <td>Базовый</td>
+                </tr>
+                <tr>
+                    <td>CSS3</td>
+                    <td>Стилизация</td>
+                    <td>Средний</td>
+                </tr>
+                <tr>
+                    <td>JavaScript</td>
+                    <td>Логика и события</td>
+                    <td>Продвинутый</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Обратная связь</h3>
+        <p>Заполните форму ниже, чтобы отправить сообщение:</p>
+
+        <form>
+            <label for="name">Ваше имя:</label>
+            <input type="text" id="name" placeholder="Иван Петров" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="ivan@example.com" required>
+
+            <label for="message">Сообщение:</label>
+            <textarea id="message" placeholder="Введите текст..."></textarea>
+
+            <button type="submit">Отправить</button>
+        </form>
+    </main>
+
+    <!-- ПОДВАЛ -->
+    <footer>
+        <p>© 2026 Учебный проект. Все права защищены.</p>
+        <p>Выполнено в рамках курса «Основы веб-разработки»</p>
+    </footer>
+
+</body>
+</html>
