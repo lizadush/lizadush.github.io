@@ -106,6 +106,104 @@
             background-color: #f9f9f9;
         }
 
+        /* ========== СТИЛИ ДЛЯ ГАЛЕРЕИ ========== */
+        .gallery-section {
+            margin: 30px 0 20px;
+        }
+
+        .gallery-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            background: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+
+        .thumbnails {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+        }
+
+        .thumbnails img {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s, border 0.2s;
+            border: 3px solid transparent;
+        }
+
+        .thumbnails img:hover {
+            transform: scale(1.05);
+            opacity: 0.8;
+        }
+
+        .thumbnails img.active {
+            border-color: #3498db;
+            transform: scale(1.05);
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            gap: 10px;
+        }
+
+        .nav-buttons button {
+            flex: 1;
+            padding: 10px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .nav-buttons button:hover {
+            background: #2980b9;
+        }
+
+        .nav-buttons button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+
+        /* Адаптивность галереи */
+        @media (max-width: 480px) {
+            .thumbnails {
+                grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+            }
+            .thumbnails img {
+                height: 60px;
+            }
+            .main-image {
+                height: 250px;
+            }
+        }
+        /* ===== КОНЕЦ СТИЛЕЙ ГАЛЕРЕИ ===== */
+
         /* Форма */
         form {
             background-color: #f8f9fa;
@@ -216,6 +314,29 @@
             </tbody>
         </table>
 
+        <!-- ========== ГАЛЕРЕЯ ИЗОБРАЖЕНИЙ ========== -->
+        <section class="gallery-section">
+            <h3>Галерея изображений</h3>
+            <p>Нажмите на миниатюру или используйте кнопки для навигации:</p>
+
+            <div class="gallery-container">
+                <!-- Главное изображение -->
+                <div class="main-image">
+                    <img id="mainImage" src="" alt="Главное изображение">
+                </div>
+
+                <!-- Миниатюры -->
+                <div class="thumbnails" id="thumbnails"></div>
+
+                <!-- Кнопки навигации -->
+                <div class="nav-buttons">
+                    <button id="prevBtn">◀ Назад</button>
+                    <button id="nextBtn">Вперед ▶</button>
+                </div>
+            </div>
+        </section>
+        <!-- ====== КОНЕЦ ГАЛЕРЕИ ====== -->
+
         <h3>Обратная связь</h3>
         <p>Заполните форму ниже, чтобы отправить сообщение:</p>
 
@@ -238,6 +359,83 @@
         <p>© 2026 Учебный проект. Все права защищены.</p>
         <p>Выполнено в рамках курса «Основы веб-разработки»</p>
     </footer>
+
+    <!-- ========== JAVASCRIPT ДЛЯ ГАЛЕРЕИ ========== -->
+    <script>
+        // Массив с URL-адресами изображений
+        // Замените на свои картинки или используйте сервис picsum.photos
+        const images = [
+            'https://picsum.photos/seed/1/800/600',
+            'https://picsum.photos/seed/2/800/600',
+            'https://picsum.photos/seed/3/800/600',
+            'https://picsum.photos/seed/4/800/600',
+            'https://picsum.photos/seed/5/800/600',
+            'https://picsum.photos/seed/6/800/600',
+            'https://picsum.photos/seed/7/800/600',
+            'https://picsum.photos/seed/8/800/600'
+        ];
+
+        let currentIndex = 0; // Текущий индекс
+
+        // DOM-элементы
+        const mainImage = document.getElementById('mainImage');
+        const thumbnailsContainer = document.getElementById('thumbnails');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        // Функция обновления галереи
+        function updateGallery(index) {
+            // Обновляем главное изображение
+            mainImage.src = images[index];
+            mainImage.alt = `Изображение ${index + 1}`;
+
+            // Обновляем активный класс у миниатюр
+            const thumbnails = document.querySelectorAll('.thumbnails img');
+            thumbnails.forEach((thumb, i) => {
+                thumb.classList.toggle('active', i === index);
+            });
+
+            // Обновляем состояние кнопок
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === images.length - 1;
+        }
+
+        // Функция создания миниатюр
+        function createThumbnails() {
+            thumbnailsContainer.innerHTML = ''; // Очищаем контейнер
+            images.forEach((src, index) => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = `Миниатюра ${index + 1}`;
+                img.dataset.index = index;
+                img.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateGallery(currentIndex);
+                });
+                thumbnailsContainer.appendChild(img);
+            });
+        }
+
+        // Обработчики для кнопок "Назад" и "Вперед"
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateGallery(currentIndex);
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < images.length - 1) {
+                currentIndex++;
+                updateGallery(currentIndex);
+            }
+        });
+
+        // Инициализация галереи
+        createThumbnails();
+        updateGallery(0);
+    </script>
+    <!-- ====== КОНЕЦ JAVASCRIPT ====== -->
 
 </body>
 </html>
