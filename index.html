@@ -1,437 +1,109 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Веб-страница</title>
-    <style>
-        /* Глобальные стили */
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #f5f5f5;
-            color: #222;
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
-            line-height: 1.6;
-        }
-
-        /* Шапка */
-        header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 25px 30px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 28px;
-        }
-
-        header p {
-            margin: 8px 0 0;
-            opacity: 0.8;
-        }
-
-        /* Навигация */
-        nav {
-            background-color: #ecf0f1;
-            padding: 12px 20px;
-            border-radius: 6px;
-            margin-bottom: 25px;
-        }
-
-        nav a {
-            color: #2c3e50;
-            text-decoration: none;
-            margin-right: 25px;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        /* Основной контент */
-        main {
-            background-color: white;
-            padding: 25px 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: 25px;
-        }
-
-        main h2 {
-            color: #2c3e50;
-            border-bottom: 3px solid #3498db;
-            padding-bottom: 10px;
-        }
-
-        main h3 {
-            color: #34495e;
-            margin-top: 20px;
-        }
-
-        /* Список */
-        ul {
-            padding-left: 25px;
-        }
-
-        ul li {
-            margin-bottom: 6px;
-        }
-
-        /* Таблица */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0 10px;
-        }
-
-        table th {
-            background-color: #34495e;
-            color: white;
-            padding: 10px;
-            text-align: left;
-        }
-
-        table td {
-            border: 1px solid #ddd;
-            padding: 10px;
-        }
-
-        table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        /* ========== СТИЛИ ДЛЯ ГАЛЕРЕИ ========== */
-        .gallery-section {
-            margin: 30px 0 20px;
-        }
-
-        .gallery-container {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-        }
-
-        .main-image {
-            width: 100%;
-            height: 350px;
-            overflow: hidden;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            background: #e0e0e0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .main-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: opacity 0.3s ease;
-        }
-
-        .thumbnails {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            gap: 10px;
-        }
-
-        .thumbnails img {
-            width: 100%;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: transform 0.2s, opacity 0.2s, border 0.2s;
-            border: 3px solid transparent;
-        }
-
-        .thumbnails img:hover {
-            transform: scale(1.05);
-            opacity: 0.8;
-        }
-
-        .thumbnails img.active {
-            border-color: #3498db;
-            transform: scale(1.05);
-        }
-
-        .nav-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 15px;
-            gap: 10px;
-        }
-
-        .nav-buttons button {
-            flex: 1;
-            padding: 10px;
-            background: #3498db;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .nav-buttons button:hover {
-            background: #2980b9;
-        }
-
-        .nav-buttons button:disabled {
-            background: #cccccc;
-            cursor: not-allowed;
-        }
-
-        /* Адаптивность галереи */
-        @media (max-width: 480px) {
-            .thumbnails {
-                grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-            }
-            .thumbnails img {
-                height: 60px;
-            }
-            .main-image {
-                height: 250px;
-            }
-        }
-        /* ===== КОНЕЦ СТИЛЕЙ ГАЛЕРЕИ ===== */
-
-        /* Форма */
-        form {
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 6px;
-            margin-top: 20px;
-        }
-
-        form label {
-            display: block;
-            font-weight: bold;
-            margin-top: 12px;
-        }
-
-        form input,
-        form textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 14px;
-            box-sizing: border-box;
-        }
-
-        form textarea {
-            height: 80px;
-            resize: vertical;
-        }
-
-        form button {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 15px;
-        }
-
-        form button:hover {
-            background-color: #2980b9;
-        }
-
-        /* Подвал */
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #7f8c8d;
-            border-top: 1px solid #ddd;
-            font-size: 14px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Студенты</title>
+  <style>
+    body { font-family: sans-serif; max-width: 700px; margin: 20px auto; }
+    form { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+    label { font-size: 14px; }
+    input, button { padding: 8px; font-size: 14px; }
+    button { cursor: pointer; }
+    .student { padding: 8px 0; }
+    hr { border: none; border-top: 1px solid #ddd; }
+  </style>
 </head>
 <body>
 
-    <!-- ШАПКА САЙТА -->
-    <header>
-        <h1>Cайт</h1>
-        <p>По дисциплине «Мобильная разработка»</p>
-    </header>
+  <!-- ФОРМА -->
+  <form id="student-form">
+    <label>Имя
+      <input type="text" id="name" required>
+    </label>
+    <label>Специальность
+      <input type="text" id="major" required>
+    </label>
+    <label>Год выпуска
+      <input type="number" id="gradYear" required>
+    </label>
+    <button type="submit">Добавить студента</button>
+  </form>
 
-    <!-- НАВИГАЦИЯ -->
-    <nav>
-        <a href="#">Главная</a>
-        <a href="#">О нас</a>
-        <a href="#">Услуги</a>
-        <a href="#">Контакты</a>
-    </nav>
+  <!-- ОБЛАСТЬ ОТОБРАЖЕНИЯ -->
+  <div id="student-display">Загрузка...</div>
 
-    <!-- ОСНОВНОЙ БЛОК -->
-    <main>
-        <h2>Добро пожаловать!</h2>
-        <p>Это пример веб-страницы, созданной в рамках изучения HTML и CSS. Здесь представлены основные элементы, которые используются при разработке сайтов.</p>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
+  import { getDatabase, ref, push, set, onValue } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-database.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-analytics.js";
 
-        <h3>Основные технологии</h3>
-        <ul>
-            <li><strong>HTML</strong> — язык разметки (структура страницы)</li>
-            <li><strong>CSS</strong> — каскадные таблицы стилей (внешний вид)</li>
-            <li><strong>JavaScript</strong> — программирование поведения (интерактивность)</li>
-        </ul>
+  // Актуальная конфигурация твоего проекта college-13be5
+  const firebaseConfig = {
+    apiKey: "AIzaSyDp3Dar0NzjYpnzKP3IhXq4NiJr7TSr2gQ",
+    authDomain: "college-13be5.firebaseapp.com",
+    databaseURL: "https://college-13be5-default-rtdb.firebaseio.com", // Твоя база Realtime Database
+    projectId: "college-13be5",
+    storageBucket: "college-13be5.firebasestorage.app",
+    messagingSenderId: "406945749920",
+    appId: "1:406945749920:web:28973883860d0d2b8b62c5",
+    measurementId: "G-TQYYXF46QR"
+  };
 
-        <h3>Пример таблицы</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Технология</th>
-                    <th>Назначение</th>
-                    <th>Уровень</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>HTML5</td>
-                    <td>Структура контента</td>
-                    <td>Базовый</td>
-                </tr>
-                <tr>
-                    <td>CSS3</td>
-                    <td>Стилизация</td>
-                    <td>Средний</td>
-                </tr>
-                <tr>
-                    <td>JavaScript</td>
-                    <td>Логика и события</td>
-                    <td>Продвинутый</td>
-                </tr>
-            </tbody>
-        </table>
+  const app = initializeApp(firebaseConfig);
+  getAnalytics(app);
+  const database = getDatabase(app);
 
-        <!-- ========== ГАЛЕРЕЯ ИЗОБРАЖЕНИЙ ========== -->
-        <section class="gallery-section">
-            <h3>Галерея изображений</h3>
-            <p>Нажмите на миниатюру или используйте кнопки для навигации:</p>
+  const studentsRef = ref(database, 'students');
 
-            <div class="gallery-container">
-                <!-- Главное изображение -->
-                <div class="main-image">
-                    <img id="mainImage" src="" alt="Главное изображение">
-                </div>
+  // --- ОБРАБОТКА ФОРМЫ ---
+  const form = document.getElementById('student-form');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault(); // не перезагружать страницу
 
-                <!-- Миниатюры -->
-                <div class="thumbnails" id="thumbnails"></div>
+    const name = document.getElementById('name').value.trim();
+    const major = document.getElementById('major').value.trim();
+    const gradYear = Number(document.getElementById('gradYear').value);
 
-                <!-- Кнопки навигации -->
-                <div class="nav-buttons">
-                    <button id="prevBtn">◀ Назад</button>
-                    <button id="nextBtn">Вперед ▶</button>
-                </div>
-            </div>
-        </section>
-        <!-- ====== КОНЕЦ ГАЛЕРЕИ ====== -->
+    if (!name || !major || !gradYear) return;
 
-        <h3>Обратная связь</h3>
-        <p>Заполните форму ниже, чтобы отправить сообщение:</p>
+    // push создает уникальный ключ в базе
+    const newStudentRef = push(studentsRef);
+    set(newStudentRef, { name, major, gradYear })
+      .then(() => {
+        form.reset(); // очистить поля после успеха
+        console.log("Insert success!");
+      })
+      .catch((error) => {
+        console.error("Database write error:", error);
+        alert("Не удалось сохранить: " + error.message);
+      });
+  });
 
-        <form>
-            <label for="name">Ваше имя:</label>
-            <input type="text" id="name" placeholder="Иван Петров" required>
+  // --- ОТОБРАЖЕНИЕ ВСЕХ В РЕАЛЬНОМ ВРЕМЕНИ ---
+  const displayElement = document.getElementById('student-display');
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" placeholder="ivan@example.com" required>
+  onValue(studentsRef, (snapshot) => {
+    const data = snapshot.val();
+    if (!data) {
+      displayElement.textContent = "Студентов нет.";
+      return;
+    }
 
-            <label for="message">Сообщение:</label>
-            <textarea id="message" placeholder="Введите текст..."></textarea>
+    const html = Object.entries(data).map(([key, s]) => `
+      <div class="student">
+        <p><strong>Имя:</strong> ${s.name ?? '-'}</p>
+        <p><strong>Специальность:</strong> ${s.major ?? '-'}</p>
+        <p><strong>Год выпуска:</strong> ${s.gradYear ?? '-'}</p>
+      </div>
+      <hr>
+    `).join('');
 
-            <button type="submit">Отправить</button>
-        </form>
-    </main>
-
-    <!-- ПОДВАЛ -->
-    <footer>
-        <p>© 2026 Учебный проект. Все права защищены.</p>
-        <p>Выполнено в рамках курса «Основы веб-разработки»</p>
-    </footer>
-
-    <!-- ========== JAVASCRIPT ДЛЯ ГАЛЕРЕИ ========== -->
-    <script>
-        const images = [
-            'https://picsum.photos/seed/1/800/600',
-            'https://picsum.photos/seed/2/800/600',
-            'https://picsum.photos/seed/3/800/600',
-            'https://picsum.photos/seed/4/800/600',
-            'https://picsum.photos/seed/5/800/600',
-            'https://picsum.photos/seed/6/800/600',
-            'https://picsum.photos/seed/7/800/600'
-        ];
-
-        let currentIndex = 0; // Текущий индекс
-
-        // DOM-элементы
-        const mainImage = document.getElementById('mainImage');
-        const thumbnailsContainer = document.getElementById('thumbnails');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-
-        // Функция обновления галереи
-        function updateGallery(index) {
-            // Обновляем главное изображение
-            mainImage.src = images[index];
-            mainImage.alt = `Изображение ${index + 1}`;
-
-            // Обновляем активный класс у миниатюр
-            const thumbnails = document.querySelectorAll('.thumbnails img');
-            thumbnails.forEach((thumb, i) => {
-                thumb.classList.toggle('active', i === index);
-            });
-
-            // Обновляем состояние кнопок
-            prevBtn.disabled = index === 0;
-            nextBtn.disabled = index === images.length - 1;
-        }
-
-        // Функция создания миниатюр
-        function createThumbnails() {
-            thumbnailsContainer.innerHTML = ''; // Очищаем контейнер
-            images.forEach((src, index) => {
-                const img = document.createElement('img');
-                img.src = src;
-                img.alt = `Миниатюра ${index + 1}`;
-                img.dataset.index = index;
-                img.addEventListener('click', () => {
-                    currentIndex = index;
-                    updateGallery(currentIndex);
-                });
-                thumbnailsContainer.appendChild(img);
-            });
-        }
-
-        // Обработчики для кнопок "Назад" и "Вперед"
-        prevBtn.addEventListener('click', () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateGallery(currentIndex);
-            }
-        });
-
-        nextBtn.addEventListener('click', () => {
-            if (currentIndex < images.length - 1) {
-                currentIndex++;
-                updateGallery(currentIndex);
-            }
-        });
-
-        // Инициализация галереи
-        createThumbnails();
-        updateGallery(0);
-    </script>
+    displayElement.innerHTML = html;
+  }, (error) => {
+    console.error("Ошибка чтения:", error);
+    displayElement.textContent = "Ошибка загрузки данных.";
+  });
+</script>
 
 </body>
 </html>
